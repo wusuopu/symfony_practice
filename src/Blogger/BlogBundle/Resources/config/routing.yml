@@ -1,6 +1,6 @@
 blogger_blog_homepage:
     pattern:  /hello/{name}
-    defaults: { _controller: BloggerBlogBundle:Default:index }
+    defaults: { _controller: BloggerBlogBundle:Default:index, name: "abc"}
     requirements:
       _method: GET
 
@@ -11,8 +11,8 @@ blogger_blog_about:
       _method: GET
       _scheme: http
 
-#blogger_blog_contact:
-    #pattern:  /content
-    #defaults: { _controller: BloggerBlogBundle::about }
-    #requirements:
-      #_method: GET
+blogger_blog_contact:
+    pattern:  /contact
+    defaults: { _controller: BloggerBlogBundle:Page:contact }
+    requirements:
+      _method: GET|POST
