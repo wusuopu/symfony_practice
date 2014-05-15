@@ -1,0 +1,18 @@
+blogger_blog_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: BloggerBlogBundle:Default:index }
+    requirements:
+      _method: GET
+
+blogger_blog_about:
+    pattern:  /about
+    defaults: { _controller: BloggerBlogBundle:Page:about }
+    requirements:
+      _method: GET
+      _scheme: http
+
+#blogger_blog_contact:
+    #pattern:  /content
+    #defaults: { _controller: BloggerBlogBundle::about }
+    #requirements:
+      #_method: GET
