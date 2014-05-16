@@ -1,6 +1,7 @@
 blogger_blog_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BloggerBlogBundle:Default:index, name: "abc"}
+    pattern:  /
+    #defaults: { _controller: BloggerBlogBundle:Default:index }
+    defaults: { _controller: BloggerBlogBundle:Page:index }
     requirements:
       _method: GET
 
@@ -16,3 +17,11 @@ blogger_blog_contact:
     defaults: { _controller: BloggerBlogBundle:Page:contact }
     requirements:
       _method: GET|POST
+
+blogger_blog_show:
+    pattern: /{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:show }
+    requirements:
+      _method: GET
+      id: \d+
+

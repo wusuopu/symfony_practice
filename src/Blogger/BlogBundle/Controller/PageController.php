@@ -5,6 +5,7 @@ namespace Blogger\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Enquiry;
 use Blogger\BlogBundle\Form\EnquiryType;
+use Blogger\BlogBundle\Entity\Blog;
 
 class PageController extends Controller
 {
@@ -38,5 +39,15 @@ class PageController extends Controller
         }
 
         return $this->render('BloggerBlogBundle:Page:contact.html.twig', ['form'=> $form->createView()]);
+    }
+
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        //$blogs = $em->createQueryBuilder()->select('b')->from('BloggerBlogBundle:Blog', 'b')
+                    //->addOrderBy('b.created', 'DESC')->setFirstResult(2)->setMaxResults(2)->getQuery()->getResult();
+        $blogs = $em->getRepository('BloggerBlogBundle:Blog')->findAll();
+
+        return $this->render('BloggerBlogBundle:Page:index.html.twig', array('blogs'=> $blogs));
     }
 }
