@@ -16,7 +16,7 @@ class EnquiryType extends AbstractType
 
     public function getName()
     {
-        return 'blogger_blogbundle_enquirytype';
+        return 'blogger_blogbundle_enquiry';
     }
 }
 ?>
