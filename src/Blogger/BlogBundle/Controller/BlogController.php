@@ -15,7 +15,7 @@ class BlogController extends Controller
         $logger->info('log test!-----------------------', array());
         $logger->notice('log test!-----------------------', array());
         $logger->warning('log test!-----------------------', array());
-        $logger->error('log test!-----------------------', array());
+        //$logger->error('log test!-----------------------', array());
         $em = $this->getDoctrine()->getManager();
         $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($id);
 

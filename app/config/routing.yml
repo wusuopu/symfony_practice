@@ -2,3 +2,14 @@ blogger_blog:
     resource: "@BloggerBlogBundle/Resources/config/routing.yml"
     prefix:   /
 
+login:
+    path:  /login
+    defaults: { _controller: BloggerBlogBundle:Security:login }
+    requirements:
+      _method: GET|POST
+
+login_check:
+    path:  /login_check
+
+logout:
+    path:  /logout
