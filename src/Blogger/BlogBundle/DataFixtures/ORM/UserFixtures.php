@@ -2,13 +2,14 @@
 namespace Blogger\BlogBundle\DataFixtures\ORM;
 
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Blogger\BlogBundle\Entity\User;
 
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class UserFixtures extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
 {
 
     /**
@@ -30,17 +31,18 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
      */
     public function load(ObjectManager $manager)
     {
-      $user = new User();
-      $user->setUsername("someuser");
-      $user->setSalt(md5(uniqid()));
-      $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
-      $user->setPassword($encoder->encodePassword('blue', $user->getSalt()));
-      $user->setEmail("someuser@mail.ca");
-      $user->setIsActive(true);
-
-      $manager->persist($user);
-
-      $manager->flush();
+        $user = new User();
+        $user->setUsername("someuser");
+        $user->setSalt(md5(uniqid()));
+        $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+        $user->setPassword($encoder->encodePassword('blue', $user->getSalt()));
+        $user->setEmail("someuser@mail.ca");
+        $user->setIsActive(true);
+  
+        $manager->persist($user);
+  
+        $manager->flush();
+        $this->addReference('user-1', $user);
     }
 
     public function getOrder()

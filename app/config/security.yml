@@ -30,6 +30,10 @@ security:
             pattern:  ^/login$
             security: false
 
+        register:
+            pattern:  ^/reg$
+            security: false
+
         index:
             pattern:  ^/$
             security: false

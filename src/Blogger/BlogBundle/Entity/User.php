@@ -4,6 +4,7 @@ namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Serializable;
 
 /**
@@ -11,6 +12,7 @@ use Serializable;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\UserRepository")
+ * @UniqueEntity(fields={"username", "email"}, errorPath="email", message="this email has already used.")
  */
 class User implements UserInterface, \Serializable
 {
@@ -57,6 +59,12 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Profile")
+     * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
+     **/
+    private $profile;
 
 
     /**
@@ -209,5 +217,28 @@ class User implements UserInterface, \Serializable
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Blogger\BlogBundle\Entity\Profile $profile
+     * @return User
+     */
+    public function setProfile(\Blogger\BlogBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Blogger\BlogBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }

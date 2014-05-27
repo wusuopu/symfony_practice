@@ -36,3 +36,9 @@ test_security:
     pattern: /secure_area
     defaults: { _controller: BloggerBlogBundle:Security:dumpString }
 
+blogger_blog_reg:
+    pattern:  /reg
+    defaults: { _controller: BloggerBlogBundle:Security:reg }
+    requirements:
+      _method: GET|POST
+

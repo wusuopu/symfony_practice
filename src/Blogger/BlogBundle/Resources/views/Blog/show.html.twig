@@ -4,6 +4,7 @@
 {% block title %}{{ blog.title }}{% endblock %}
 
 {% block body %}
+    {% trans with {'%name%': 'Fabien'} from 'messages' into 'fr' %}Hello %name%{% endtrans %}
     <article class="blog">
         <header>
             <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time></div>
