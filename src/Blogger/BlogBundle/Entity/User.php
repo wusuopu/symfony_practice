@@ -5,6 +5,7 @@ namespace Blogger\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+//use Blogger\TestBundle\Entity\Test;
 use Serializable;
 
 /**
@@ -65,6 +66,13 @@ class User implements UserInterface, \Serializable
      * @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
      **/
     private $profile;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="Blogger\TestBundle\Entity\Test")
+     * @ORM\JoinColumn(name="test_id", referencedColumnName="id")
+     **/
+    private $test;
 
 
     /**
@@ -240,5 +248,28 @@ class User implements UserInterface, \Serializable
     public function getProfile()
     {
         return $this->profile;
+    }
+
+    /**
+     * Set test
+     *
+     * @param \Blogger\TestBundle\Entity\Test $test
+     * @return User
+     */
+    public function setTest(\Blogger\TestBundle\Entity\Test $test = null)
+    {
+        $this->test = $test;
+
+        return $this;
+    }
+
+    /**
+     * Get test
+     *
+     * @return \Blogger\TestBundle\Entity\Test 
+     */
+    public function getTest()
+    {
+        return $this->test;
     }
 }
