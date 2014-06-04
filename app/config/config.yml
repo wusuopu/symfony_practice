@@ -22,6 +22,9 @@ framework:
         # handler_id set to null will use default session handler from php.ini
         #handler_id:  ~
         handler_id: session.handler.pdo
+        name: symfony_session
+        cookie_lifetime: 3600
+        gc_maxlifetime: 1800
     fragments:       ~
     http_method_override: true
 
@@ -41,6 +44,11 @@ services:
     session.handler.pdo:
         class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         arguments: ["@pdo", "%pdo.db_options%"]
+
+    kernel.listener.view_user_variable:
+        class: Blogger\BlogBundle\EventListener\UserViewListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.view, method: onKernelView }
 
 # Twig Configuration
 twig:

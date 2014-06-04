@@ -42,3 +42,15 @@ blogger_blog_reg:
     requirements:
       _method: GET|POST
 
+blogger_blog_test1:
+    pattern:  /test1
+    defaults: { _controller: BloggerBlogBundle:Security:test1 }
+    requirements:
+      _method: GET|POST
+
+blogger_blog_test2:
+    pattern:  /test2
+    defaults: { _controller: BloggerBlogBundle:Security:test2 }
+    requirements:
+      _method: GET|POST
+

@@ -3,9 +3,11 @@ namespace Blogger\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Blog;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Blog controller.
+ * @Template()
  **/
 class BlogController extends Controller
 {
@@ -20,9 +22,10 @@ class BlogController extends Controller
         //$logger->error('log test!-----------------------', array());
         //$user = print_r($this->getUser(), true);
         //$logger->notice("user: $user", array());
-        $logger->notice("trans: $translated", array());
-        $local_names = print_r($this->get('request'), true);
-        $logger->notice("locale: $local_names", array());
+        //$logger->notice("trans: $translated", array());
+
+        //$local_names = print_r($this->get('request'), true);
+        //$logger->notice("locale: $local_names", array());
 
         $em = $this->getDoctrine()->getManager();
         $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($id);
@@ -33,8 +36,13 @@ class BlogController extends Controller
         //$comments = $em->getRepository('BloggerBlogBundle:Comment')->getCommentsForBlog($blog->getId());
         $comments = $blog->getComments();
         //$comments = [];
-        return $this->render('BloggerBlogBundle:Blog:show.html.twig',
-                             array('blog'=> $blog, 'comments'=> $comments));
+
+        $sec = $this->get('security.context');
+        $token = $sec->getToken();
+        return array('blog'=> $blog, 'comments'=> $comments,
+                  //'user'=>$this->getUser(),
+                  'token'=>$token, 'sec'=>$sec,
+        );
     }
 }
 ?>

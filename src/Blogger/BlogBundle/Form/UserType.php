@@ -34,11 +34,11 @@ class UserType extends AbstractType
         ));
     }
 
-    public function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('username', new NotBlank(array('message'=> 'You must enter your name')));
-        $metadata->addPropertyConstraint('email', new NotBlank(array('message'=> 'You must enter a comment')));
-    }
+    //public function loadValidatorMetadata(ClassMetadata $metadata)
+    //{
+        //$metadata->addPropertyConstraint('username', new NotBlank(array('message'=> 'You must enter your name')));
+        //$metadata->addPropertyConstraint('email', new NotBlank(array('message'=> 'You must enter a comment')));
+    //}
 
     /**
      * @return string

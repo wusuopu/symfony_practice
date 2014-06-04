@@ -7,6 +7,9 @@ use Blogger\BlogBundle\Form\RegisterType;
 use Blogger\BlogBundle\Form\Registration;
 use Blogger\BlogBundle\Entity\User;
 use Blogger\BlogBundle\Entity\Profile;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class SecurityController extends Controller
 {
@@ -85,6 +88,64 @@ class SecurityController extends Controller
 
         return $this->render('BloggerBlogBundle:Security:reg.html.twig',
                              array('error' => null, 'form' => $form->createView()));
+    }
+
+    /**
+     * @Template()
+     **/
+    public function test1Action()
+    {
+        $request = $this->get("request");
+        $session = $request->getSession();
+
+        $logger = $this->get('monolog.logger.applog');
+        $logger->info('user_id: '. $session->get('user_id'));
+
+        $sec = $this->get('security.context');
+        $token = $sec->getToken();
+
+        if (!$token) {
+            $providerKey = 'secured_area';
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('BloggerBlogBundle:User')->find(2);
+            $token = new UsernamePasswordToken($user, null, $providerKey, $user->getRoles());
+            $sec->setToken($token);
+
+            // dispatch the login event
+            $event = new InteractiveLoginEvent($request, $token);
+            $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+        }
+
+        $logger = $this->get('monolog.logger.applog');
+        return array(
+            //'user' => $this->getUser(),
+            'sec' => $sec,
+            'token' => $token,
+            'session' => $session,
+            'cookies' => $request->cookies,
+        );
+    }
+
+    /**
+     * @Template()
+     **/
+    public function test2Action()
+    {
+        $request = $this->getRequest();
+        $session = $request->getSession();
+
+        $session->set('user_id', 12);
+
+        $sec = $this->get('security.context');
+        $token = $sec->getToken();
+        $sec->setToken(NULL);       // force logout
+
+        $logger = $this->get('monolog.logger.applog');
+        return array(
+            //'user' => $this->getUser(),
+            'sec' => $sec,
+            'token' => $token,
+        );
     }
 }
 
