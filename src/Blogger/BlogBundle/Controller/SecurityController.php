@@ -96,7 +96,8 @@ class SecurityController extends Controller
     public function test1Action()
     {
         $request = $this->get("request");
-        $session = $request->getSession();
+        //$session = $request->getSession();
+        $session = $this->get('session');
 
         $logger = $this->get('monolog.logger.applog');
         $logger->info('user_id: '. $session->get('user_id'));

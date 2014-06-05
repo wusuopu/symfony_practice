@@ -43,7 +43,7 @@ services:
 
     session.handler.pdo:
         class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
-        arguments: ["@pdo", "%pdo.db_options%"]
+        arguments: ["@pdo", { db_table: session, db_id_col: session_id, db_data_col: session_value, db_time_col: session_time } ]
 
     kernel.listener.view_user_variable:
         class: Blogger\BlogBundle\EventListener\UserViewListener
