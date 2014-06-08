@@ -15,10 +15,10 @@ class BlogController extends Controller
     {
         $translated = $this->get('translator')->trans('Symfony2 is great');
 
-        $logger = $this->get('monolog.logger.applog');
-        $logger->info('log test!-----------------------', array());
-        $logger->notice('log test!-----------------------', array());
-        $logger->warning('log test!-----------------------', array());
+        //$logger = $this->get('monolog.logger.applog');
+        //$logger->info('log test!-----------------------', array());
+        //$logger->notice('log test!-----------------------', array());
+        //$logger->warning('log test!-----------------------', array());
         //$logger->error('log test!-----------------------', array());
         //$user = print_r($this->getUser(), true);
         //$logger->notice("user: $user", array());

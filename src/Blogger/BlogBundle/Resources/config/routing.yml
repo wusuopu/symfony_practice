@@ -42,6 +42,12 @@ blogger_blog_reg:
     requirements:
       _method: GET|POST
 
+blogger_blog_userinfo_passwd:
+    pattern:  /user/passwd
+    defaults: { _controller: BloggerBlogBundle:Security:passwdChange }
+    requirements:
+      _method: GET|POST
+
 blogger_blog_test1:
     pattern:  /test1
     defaults: { _controller: BloggerBlogBundle:Security:test1 }

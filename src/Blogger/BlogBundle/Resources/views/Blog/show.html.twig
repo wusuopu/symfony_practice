@@ -6,10 +6,6 @@
 {% block body %}
 {{ dump(app.user) }}
 <hr>
-{{ dump(token) }}
-<hr>
-{{ dump(sec) }}
-<hr>
     {% trans with {'%name%': 'Fabien'} from 'messages' into 'fr' %}Hello %name%{% endtrans %}
     <article class="blog">
         <header>

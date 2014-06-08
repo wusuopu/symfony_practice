@@ -38,13 +38,13 @@ security:
             pattern:  ^/$
             security: false
 
-        test1:
-            pattern:  ^/test1$
-            security: false
+        #test1:
+            #pattern:  ^/test1$
+            #security: false
 
-        test2:
-            pattern:  ^/test2$
-            security: false
+        #test2:
+            #pattern:  ^/test2$
+            #security: false
 
         secured_area:
             pattern:    ^/
@@ -54,7 +54,7 @@ security:
             logout:
                 path:   /logout
                 target: /
-            #anonymous: ~
+            anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 

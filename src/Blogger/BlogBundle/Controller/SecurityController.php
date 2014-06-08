@@ -10,6 +10,7 @@ use Blogger\BlogBundle\Entity\Profile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Blogger\BlogBundle\Form\PasswdType;
 
 class SecurityController extends Controller
 {
@@ -93,6 +94,31 @@ class SecurityController extends Controller
     /**
      * @Template()
      **/
+    public function passwdChangeAction()
+    {
+        $request = $this->get('request');
+
+        //$user = $this->getUser();
+        $user = new User();
+        $form    = $this->createForm(new PasswdType(), $user);
+        $form->bind($request);
+
+        $logger = $this->get('monolog.logger.applog');
+        $logger->info("passwd form: "  . $form->isValid());
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $logger->info("passwd form: " . $data->getUsername() . " " . $data->getPassword());
+            //$em = $this->getDoctrine()->getManager();
+            //$em->persist($user);
+            //$em->flush();
+        }
+
+        return ['form'=> $form->createView()];
+    }
+
+    /**
+     * @Template()
+     **/
     public function test1Action()
     {
         $request = $this->get("request");
@@ -104,11 +130,12 @@ class SecurityController extends Controller
 
         $sec = $this->get('security.context');
         $token = $sec->getToken();
+        $user = $this->getUser();
 
-        if (!$token) {
+        if (empty($user)) {
             $providerKey = 'secured_area';
             $em = $this->getDoctrine()->getManager();
-            $user = $em->getRepository('BloggerBlogBundle:User')->find(2);
+            $user = $em->getRepository('BloggerBlogBundle:User')->find(1);
             $token = new UsernamePasswordToken($user, null, $providerKey, $user->getRoles());
             $sec->setToken($token);
 
@@ -119,7 +146,7 @@ class SecurityController extends Controller
 
         $logger = $this->get('monolog.logger.applog');
         return array(
-            //'user' => $this->getUser(),
+            'user' => $this->getUser(),
             'sec' => $sec,
             'token' => $token,
             'session' => $session,
