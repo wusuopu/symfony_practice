@@ -30,6 +30,8 @@ class SecurityController extends Controller
         foreach ($session as $k => $v) {
             $logger->info("$k => $v", []);
         }
+        //$em = $this->container->get("doctrine")->getManager();
+        //var_dump($em->getRepository('BloggerBlogBundle:User')->findOneByUsername('test'));
 
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
@@ -126,16 +128,16 @@ class SecurityController extends Controller
         $session = $this->get('session');
 
         $logger = $this->get('monolog.logger.applog');
-        $logger->info('user_id: '. $session->get('user_id'));
 
         $sec = $this->get('security.context');
         $token = $sec->getToken();
         $user = $this->getUser();
 
+        $em = $this->getDoctrine()->getManager();
         if (empty($user)) {
             $providerKey = 'secured_area';
             $em = $this->getDoctrine()->getManager();
-            $user = $em->getRepository('BloggerBlogBundle:User')->find(1);
+            $user = $em->getRepository('BloggerBlogBundle:User')->find(2);
             $token = new UsernamePasswordToken($user, null, $providerKey, $user->getRoles());
             $sec->setToken($token);
 
@@ -151,6 +153,7 @@ class SecurityController extends Controller
             'token' => $token,
             'session' => $session,
             'cookies' => $request->cookies,
+            'data' => $em->getRepository('BloggerBlogBundle:User')->findOneByUsername("test1"),
         );
     }
 
@@ -161,8 +164,6 @@ class SecurityController extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
-
-        $session->set('user_id', 12);
 
         $sec = $this->get('security.context');
         $token = $sec->getToken();

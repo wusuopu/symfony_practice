@@ -5,6 +5,8 @@
 
 {% block body %}
 {{ dump(app.user) }}
+
+{{ dump(user) }}
 <hr>
     {% trans with {'%name%': 'Fabien'} from 'messages' into 'fr' %}Hello %name%{% endtrans %}
     <article class="blog">

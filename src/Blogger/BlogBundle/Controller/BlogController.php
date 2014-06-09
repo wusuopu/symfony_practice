@@ -40,7 +40,7 @@ class BlogController extends Controller
         $sec = $this->get('security.context');
         $token = $sec->getToken();
         return array('blog'=> $blog, 'comments'=> $comments,
-                  //'user'=>$this->getUser(),
+                  'user'=>$this->getUser(),
                   'token'=>$token, 'sec'=>$sec,
         );
     }

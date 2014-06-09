@@ -11,6 +11,8 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        webservice:
+            id: webservice_user_provider
         main:
             entity:
                 class: Blogger\BlogBundle\Entity\User
@@ -34,9 +36,9 @@ security:
             pattern:  ^/reg$
             security: false
 
-        index:
-            pattern:  ^/$
-            security: false
+        #index:
+            #pattern:  ^/$
+            #security: false
 
         #test1:
             #pattern:  ^/test1$
@@ -48,7 +50,9 @@ security:
 
         secured_area:
             pattern:    ^/
-            form_login:
+            #form_login:
+            simple_form:
+                authenticator: time_authenticator
                 check_path: login_check
                 login_path: login
             logout:

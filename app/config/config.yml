@@ -50,6 +50,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.view, method: onKernelView }
 
+    time_authenticator:
+        class: Blogger\BlogBundle\Security\TimeAuthenticator
+        arguments: ["@security.encoder_factory"]
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"

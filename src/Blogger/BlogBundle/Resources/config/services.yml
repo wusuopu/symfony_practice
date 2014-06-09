@@ -1,5 +1,6 @@
 parameters:
 #    blogger_blog.example.class: Blogger\BlogBundle\Example
+    webservice_user_provider.class: Blogger\BlogBundle\Security\User\WebserviceUserProvider
 
 services:
 #    blogger_blog.example:
@@ -14,3 +15,6 @@ services:
         #arguments: ["@logger"]
         #tags:
           #- { name: monolog.logger, handlers: applog, channels: applog }
+    webservice_user_provider:
+            class: "%webservice_user_provider.class%"
+            arguments: ["@doctrine.orm.entity_manager"]
