@@ -1,9 +1,11 @@
 <?php
 namespace Blogger\BlogBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Blog;
+use Blogger\BlogBundle\Common\LoggerUtil;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Blog controller.
@@ -11,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  **/
 class BlogController extends Controller
 {
+    use LoggerUtil;
     public function showAction($id)
     {
         $translated = $this->get('translator')->trans('Symfony2 is great');
@@ -33,6 +36,14 @@ class BlogController extends Controller
         if (!$blog) {
             throw $this->createNotFoundException('Unable to findBlog post.');
         }
+        if (false === $this->get('security.context')->isGranted('view', $blog)) {
+            $this->PutAppLog("Unauthorised access!");
+            throw new AccessDeniedException('Unauthorised access this blog!');
+        }
+        if (false === $this->get('security.context')->isGranted('edit', $blog)) {
+            $this->PutAppLog("Unauthorised access for edit!");
+        }
+
         //$comments = $em->getRepository('BloggerBlogBundle:Comment')->getCommentsForBlog($blog->getId());
         $comments = $blog->getComments();
         //$comments = [];

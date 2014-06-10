@@ -44,7 +44,7 @@ class WebserviceUserProvider extends ContainerAware implements UserProviderInter
             );
         }
 
-        var_dump($user);
+        //var_dump($user);
         return $this->loadUserByUsername($user->getId());
     }
 

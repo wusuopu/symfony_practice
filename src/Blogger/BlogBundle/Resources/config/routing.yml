@@ -29,8 +29,14 @@ blogger_blog_comment_create:
     pattern:  /comment/{blog_id}
     defaults: { _controller: BloggerBlogBundle:Comment:create }
     requirements:
-        _method:  POST
+        #_method:  POST
         blog_id: \d+
+
+blogger_blog_comment_edit:
+    pattern:  /comment/{comment_id}/edit
+    defaults: { _controller: BloggerBlogBundle:Comment:edit }
+    requirements:
+        comment_id: \d+
 
 test_security:
     pattern: /secure_area

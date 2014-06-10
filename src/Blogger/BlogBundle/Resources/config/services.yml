@@ -18,3 +18,9 @@ services:
     webservice_user_provider:
             class: "%webservice_user_provider.class%"
             arguments: ["@doctrine.orm.entity_manager"]
+
+    security.access.post_voter:
+        class: Blogger\BlogBundle\Security\Authorization\Voter\PostVoter
+        public: false
+        tags:
+            - { name: security.voter }
