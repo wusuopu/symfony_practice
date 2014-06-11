@@ -1,12 +1,28 @@
 <?php
 namespace Blogger\BlogBundle\Twig\Extensions;
 
+use Twig_Function_Method;
+use Twig_Environment;
 class BloggerBlogExtension extends \Twig_Extension
 {
+    protected $environment;
+
+    public function initRuntime(\Twig_Environment $environment)
+    {
+        $this->environment = $environment;
+    }
     public function getFilters()
     {
         return array(
             'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
+        );
+    }
+
+    public function getFunctions()
+    {
+        return array(
+            'deepin_is_login' => new \Twig_Function_Method($this, 'deepinIsLogin'),
+            'deepin_is_granted' => new \Twig_Function_Method($this, 'deepinIsGranted'),
         );
     }
 
@@ -45,6 +61,21 @@ class BloggerBlogExtension extends \Twig_Extension
         return $duration;
     }
 
+    public function deepinIsLogin()
+    {
+        $app = $this->environment->getGlobals()['app'];
+        $user = $app->getUser();
+        // http://symfony.com/doc/current/reference/twig_reference.html
+        // app Attributes: app.user, app.request, app.session, app.environment, app.debug, app.security
+        //var_dump($app->getSecurity());
+        return !empty($user);
+    }
+
+    public function deepinIsGranted()
+    {
+        $security = $this->environment->getGlobals()['app']->getSecurity();
+        return $security->isGranted('edit');
+    }
     public function getName()
     {
         return 'blogger_blog_extension';

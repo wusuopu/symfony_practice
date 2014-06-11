@@ -24,6 +24,13 @@
                                 <li><a href="{{ path('blogger_blog_homepage') }}">Home</a></li>
                                 <li><a href="{{ path('blogger_blog_about') }}">About</a></li>
                                 <li><a href="{{ path('blogger_blog_contact') }}">Contact</a></li>
+
+                                {% if deepin_is_login() %}
+                                  {{ app.user.username }}
+                                  <li><a href="{{ path('logout') }}">Logout</a></li>
+                                {% else %}
+                                  <li><a href="{{ path('login') }}">Login</a></li>
+                                {% endif %}
                             </ul>
                         </nav>
                     {% endblock %}

@@ -24,3 +24,9 @@ services:
         public: false
         tags:
             - { name: security.voter }
+
+    security.access.user_voter:
+        class: Blogger\BlogBundle\Security\Authorization\Voter\UserVoter
+        public: false
+        tags:
+            - { name: security.voter }

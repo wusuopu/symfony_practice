@@ -11,7 +11,9 @@
     {% trans with {'%name%': 'Fabien'} from 'messages' into 'fr' %}Hello %name%{% endtrans %}
     <article class="blog">
         <header>
-            <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time></div>
+            <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time>
+              {% if deepin_is_granted() %}edit...{% endif %}
+            </div>
             <h2>{{ blog.title }}</h2>
         </header>
         <img src="{{ asset(['images/', blog.image]|join) }}" alt="{{ blog.title }} image not found" class="large" />

@@ -2,6 +2,7 @@
 {% extends 'BloggerBlogBundle::layout.html.twig' %}
 
 {% block body %}
+{#{{ dump(app) }}#}
     {% for blog in blogs %}
         <article class="blog">
             <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time></div>
