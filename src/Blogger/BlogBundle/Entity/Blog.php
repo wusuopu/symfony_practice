@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use DateTime;
+use Blogger\BlogBundle\Annotation\MySecurity;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\BlogRepository")
@@ -98,6 +99,7 @@ class Blog
     /**
      * Get title
      *
+     * @MySecurity("title", dataType="string")
      * @return string 
      */
     public function getTitle()
