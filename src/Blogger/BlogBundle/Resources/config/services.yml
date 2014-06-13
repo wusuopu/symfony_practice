@@ -1,6 +1,7 @@
 parameters:
 #    blogger_blog.example.class: Blogger\BlogBundle\Example
     webservice_user_provider.class: Blogger\BlogBundle\Security\User\WebserviceUserProvider
+    blogger.resolvers.my_custom_annotation_resolver.class: Blogger\BlogBundle\Resolver\MyCustomAnnotationResolver
 
 services:
 #    blogger_blog.example:
@@ -30,3 +31,13 @@ services:
         public: false
         tags:
             - { name: security.voter }
+
+    blogger.resolvers.my_custom_annotation_resolver:
+        class: %blogger.resolvers.my_custom_annotation_resolver.class%
+        tags:
+            - { name: controller_extra.annotation }
+
+    some_annotation_driver:
+        class: Blogger\BlogBundle\Annotation\Driver\AnnotationDriver
+        tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]
+        arguments: [@annotation_reader]

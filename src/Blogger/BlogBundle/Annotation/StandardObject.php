@@ -7,7 +7,7 @@ use Doctrine\Common\Annotations\Annotation;
 /**
  * @Annotation
  **/
-class MySecurity
+class StandardObject
 {
     private $propertyName;
     private $dataType = 'string';

@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Blogger\BlogBundle\Conversion\StandardObjectConverter;
+use Blogger\BlogBundle\Annotation\MyCustomAnnotation;
+use Blogger\BlogBundle\Annotation\Permissions;
 
 /**
  * Blog controller.
@@ -17,6 +20,8 @@ class BlogController extends Controller
     use LoggerUtil;
 
     /**
+     * @MyCustomAnnotation()
+     * @Permissions(perm="ok")
      * @Security("is_granted('view', id)")
      **/
     public function showAction($id)
@@ -52,6 +57,12 @@ class BlogController extends Controller
         //$comments = $em->getRepository('BloggerBlogBundle:Comment')->getCommentsForBlog($blog->getId());
         $comments = $blog->getComments();
         //$comments = [];
+
+        //$reader = $this->container->get("annotation_reader");
+        //$converter = new StandardObjectConverter($reader);
+        //$standardObject = $converter->convert($blog);
+        //var_dump($standardObject);
+        $this->PutAppLog("title: " . $blog->getTitle());
 
         $sec = $this->get('security.context');
         $token = $sec->getToken();
