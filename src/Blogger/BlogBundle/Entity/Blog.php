@@ -10,7 +10,7 @@ use Blogger\BlogBundle\Annotation\StandardObject;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\BlogRepository")
- * @ORM\Table(name="blog")
+ * @ORM\Table(name="blog", indexes={@ORM\Index(name="search_idx", columns={"title", "created"})})
  **/
 class Blog
 {

@@ -32,12 +32,17 @@ services:
         tags:
             - { name: security.voter }
 
+    blogger.expression.expression:
+        class: Blogger\BlogBundle\ExpressionLanguage\ExpressionLanguage
+        tags:
+            - { name: blogger.expression }
+
     blogger.resolvers.my_custom_annotation_resolver:
         class: %blogger.resolvers.my_custom_annotation_resolver.class%
         tags:
             - { name: controller_extra.annotation }
 
-    some_annotation_driver:
-        class: Blogger\BlogBundle\Annotation\Driver\AnnotationDriver
-        tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]
-        arguments: [@annotation_reader]
+    #some_annotation_driver:
+        #class: Blogger\BlogBundle\Annotation\Driver\AnnotationDriver
+        #tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]
+        #arguments: [@annotation_reader]

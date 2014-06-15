@@ -44,14 +44,17 @@ class AnnotationDriver
                 //var_dump("in AnnotationDriver xxxxxx");
                 //var_dump($configuration);
                 //var_dump($controller[0]->get('security.context')->getToken()->getUser());
-                if ($configuration->perm != "ok") {
-                    //throw new AccessDeniedHttpException();
-                    //var_dump($configuration->perm);
-                    //$event->setResponse();
-                    $event->setController(function() {
-                        return new RedirectResponse('/', 302);
-                    });
-                }
+                $lang = $controller[0]->get('blogger.expression.expression');
+                var_dump($lang->compile($configuration->perm));
+                $lang->evaluate($configuration->perm, ['a'=>1, 'b'=>2]);
+                //if ($configuration->perm != "ok") {
+                    ////throw new AccessDeniedHttpException();
+                    ////var_dump($configuration->perm);
+                    ////$event->setResponse();
+                    //$event->setController(function() {
+                        //return new RedirectResponse('/', 302);
+                    //});
+                //}
              }
          }
     }
