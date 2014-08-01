@@ -27,15 +27,15 @@ class TimeAuthenticator implements SimpleFormAuthenticatorInterface
             throw new AuthenticationException('Invalid username or password');
         }
 
-        //$encoder = $this->encoderFactory->getEncoder($user);
-        //$passwordValid = $encoder->isPasswordValid(
-            //$user->getPassword(),
-            //$token->getCredentials(),
-            //$user->getSalt()
-        //);
+        $encoder = $this->encoderFactory->getEncoder($user);
+        $passwordValid = $encoder->isPasswordValid(
+            $user->getPassword(),
+            $token->getCredentials(),
+            $user->getSalt()
+        );
         //$passwordValid = !strcmp($token->getCredentials(), '123');
         //var_dump($user, !empty($user));
-        $passwordValid = !empty($user);
+        //$passwordValid = !empty($user);
 
         if ($passwordValid) {
             //$currentHour = date('G');

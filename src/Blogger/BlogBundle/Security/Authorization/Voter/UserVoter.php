@@ -31,12 +31,12 @@ class UserVoter implements VoterInterface
             throw new InvalidArgumentException('Only one attribute is allowrd for VIEW or EDIT');
         }
 
-        $attribute = $attributes[0];
-        $user = $token->getUser();
+        //$attribute = $attributes[0];
+        //$user = $token->getUser();
 
-        if (!$user instanceof UserInterface) {
-            return VoterInterface::ACCESS_DENIED;
-        }
+        //if (!$user instanceof UserInterface) {
+            //return VoterInterface::ACCESS_DENIED;
+        //}
 
         return VoterInterface::ACCESS_GRANTED;
 
