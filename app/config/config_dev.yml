@@ -41,3 +41,34 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+services:
+    pdo:
+        class: PDO
+        arguments:
+            #dsn: "mysql:dbname=symfony2_test1"
+            #user: user
+            #password: user
+            #- "mysql:host=%database_host%;port=%database_port%;dbname=%database_name%"
+            #- "%database_user%"
+            #- "%database_password%"
+            - "sqlite:%kernel.root_dir%/data/data.db3"
+        calls:
+          - [setAttribute, [3, 2]]    # \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION
+
+    session.handler.pdo:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        arguments: ["@pdo", { db_table: session, db_id_col: session_id, db_data_col: session_value, db_time_col: session_time } ]
+
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        path:     "%kernel.root_dir%/data/data.db3"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true

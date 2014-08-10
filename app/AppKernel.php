@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Blogger\BlogBundle\BloggerBlogBundle(),
             new Blogger\TestBundle\BloggerTestBundle(),
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
+            new Snc\RedisBundle\SncRedisBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

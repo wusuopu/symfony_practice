@@ -2,6 +2,8 @@
     <div>{{ error.message }}</div>
 {% endif %}
 
+{{ dump(app.user) }}
+
 <form action="{{ path('login_check') }}" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />

@@ -122,3 +122,14 @@ old_sound_rabbit_mq:
             queue_options:    {name: 'upload-picture'}
             callback:         upload_picture_service
             idle_timeout:     60
+
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://localhost:6379/0
+        login:
+            type: predis
+            alias: login
+            dsn: redis://localhost:6379/1

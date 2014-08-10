@@ -46,3 +46,8 @@ services:
         #class: Blogger\BlogBundle\Annotation\Driver\AnnotationDriver
         #tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]
         #arguments: [@annotation_reader]
+
+    redis_anth_driver:
+        class: Blogger\BlogBundle\Security\RedisAnth
+        tags: [{name: kernel.event_listener, event: kernel.request, method: onKernelRequest }]
+        arguments: [@doctrine.orm.entity_manager, @security.context, @snc_redis.login]
