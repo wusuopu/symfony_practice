@@ -54,6 +54,17 @@ services:
         class: Blogger\BlogBundle\Security\TimeAuthenticator
         arguments: [@security.encoder_factory, @kernel]
 
+    #security.authentication.failure_handler.secured_area.simple_form:
+        #class: Blogger\BlogBundle\Security\AnthenticationHandler
+        #arguments:  [@router]
+        #tags:
+          #- { name: 'monolog.logger', channel: 'security' }
+    #security.authentication.success_handler.secured_area.simple_form:
+        #class: Blogger\BlogBundle\Security\AnthenticationHandler
+        #arguments:  [@router]
+        #tags:
+          #- { name: 'monolog.logger', channel: 'security' }
+
     upload_picture_service:
         class: Blogger\BlogBundle\Consumer\UploadPictureConsumer
 

@@ -55,6 +55,13 @@ security:
                 authenticator: time_authenticator
                 check_path: login_check
                 login_path: login
+                #success_handler: true
+                #failure_handler: true
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
             logout:
                 path:   /logout
                 target: /
