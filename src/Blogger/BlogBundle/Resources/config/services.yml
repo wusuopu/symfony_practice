@@ -2,6 +2,13 @@ parameters:
 #    blogger_blog.example.class: Blogger\BlogBundle\Example
     webservice_user_provider.class: Blogger\BlogBundle\Security\User\WebserviceUserProvider
     blogger.resolvers.my_custom_annotation_resolver.class: Blogger\BlogBundle\Resolver\MyCustomAnnotationResolver
+    deepinid_sso.attr_cookie_name: '_deepininfo_cookie'
+    deepinid_sso.name: 'deepininfo'
+    deepinid_sso.lifetime: 100
+    deepinid_sso.path: '/about'
+    deepinid_sso.domain: '.test.com'
+    deepinid_sso.secure: false
+    deepinid_sso.httponly: false
 
 services:
 #    blogger_blog.example:
@@ -18,7 +25,7 @@ services:
           #- { name: monolog.logger, handlers: applog, channels: applog }
     webservice_user_provider:
             class: "%webservice_user_provider.class%"
-            arguments: ["@doctrine.orm.entity_manager"]
+            arguments: [@doctrine.orm.entity_manager]
 
     security.access.post_voter:
         class: Blogger\BlogBundle\Security\Authorization\Voter\PostVoter
@@ -47,7 +54,12 @@ services:
         #tags: [{name: kernel.event_listener, event: kernel.controller, method: onKernelController}]
         #arguments: [@annotation_reader]
 
-    redis_anth_driver:
-        class: Blogger\BlogBundle\Security\RedisAnth
-        tags: [{name: kernel.event_listener, event: kernel.request, method: onKernelRequest }]
-        arguments: [@doctrine.orm.entity_manager, @security.context, @snc_redis.login]
+    sso_response_listener:
+        class: Blogger\BlogBundle\EventListener\SSOCookieListener
+        tags: [{name: kernel.event_listener, event: kernel.response, method: onKernelRespone}]
+        arguments: [@kernel]
+
+    #redis_anth_driver:
+        #class: Blogger\BlogBundle\Security\RedisAnth
+        #tags: [{name: kernel.event_listener, event: kernel.request, method: onKernelRequest }]
+        #arguments: [@doctrine.orm.entity_manager, @security.context, @snc_redis.login]

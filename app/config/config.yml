@@ -52,7 +52,7 @@ services:
 
     time_authenticator:
         class: Blogger\BlogBundle\Security\TimeAuthenticator
-        arguments: ["@security.encoder_factory"]
+        arguments: [@security.encoder_factory, @kernel]
 
     upload_picture_service:
         class: Blogger\BlogBundle\Consumer\UploadPictureConsumer
