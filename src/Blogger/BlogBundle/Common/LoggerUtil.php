@@ -7,7 +7,11 @@ trait LoggerUtil
     {
 
         if ($this->container->getParameter("kernel.environment") == "dev") {
-            $this->get('monolog.logger.applog')->$level($str, $ctx);
+            ob_start();
+            var_dump($str);
+            $outStr = ob_get_contents();
+            ob_end_clean();
+            $this->get('monolog.logger.applog')->$level($outStr, $ctx);
         }
     }
 }

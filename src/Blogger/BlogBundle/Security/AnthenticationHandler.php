@@ -24,7 +24,7 @@ class AnthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
     {
 
         $targetPath = $request->getSession()->get('_security.target_path');
-        var_dump('authentication success: ', $targetPath);
+        //var_dump('authentication success: ', $targetPath);
         //if ($request->isXmlHttpRequest()) {
             //// Handle XHR here
         //} else {
@@ -45,7 +45,7 @@ class AnthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        var_dump("authentication failure: ", $exception->getMessage());
+        //var_dump("authentication failure: ", $exception->getMessage());
         //if ($request->isXmlHttpRequest()) {
             //// Handle XHR here
         //} else {

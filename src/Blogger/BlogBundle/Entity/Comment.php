@@ -4,12 +4,14 @@ namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\EntityListeners;
 
 /**
  * Comment
  *
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\CommentRepository")
+ * @ORM\EntityListeners({"Blogger\BlogBundle\Entity\CommentListener"})
  */
 class Comment
 {

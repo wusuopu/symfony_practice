@@ -77,4 +77,16 @@ class PageController extends Controller
 
         return $this->render('BloggerBlogBundle:Page:mq.html.twig', array());
     }
+
+    public function mqTest2Action()
+    {
+        $request = $this->getRequest();
+
+        if ($request->isMethod("POST")) {
+            $msg = array('content'  => $request->request->get('content'));
+            $this->get('old_sound_rabbit_mq.broadcast_producer')->publish(serialize($msg));
+        }
+
+        return $this->render('BloggerBlogBundle:Page:mq.html.twig', array());
+    }
 }

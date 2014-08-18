@@ -72,3 +72,9 @@ blogger_blog_mq_test:
     requirements:
       _method: GET|POST
 
+blogger_blog_mq_test2:
+    pattern:  /mq_test2
+    defaults: { _controller: BloggerBlogBundle:Page:mqTest2 }
+    requirements:
+      _method: GET|POST
+
