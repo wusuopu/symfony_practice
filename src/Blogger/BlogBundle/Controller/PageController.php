@@ -46,13 +46,13 @@ class PageController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
 
-        $logger = $this->get('monolog.logger.applog');
-        foreach ($request as $k => $v) {
-            $logger->info("$k => " . print_r($v, true), []);
-        }
-        foreach ($session as $k => $v) {
-            $logger->info("$k => $v", []);
-        }
+        //$logger = $this->get('monolog.logger.applog');
+        //foreach ($request as $k => $v) {
+            //$logger->info("$k => " . print_r($v, true), []);
+        //}
+        //foreach ($session as $k => $v) {
+            //$logger->info("$k => $v", []);
+        //}
 
         $em = $this->getDoctrine()->getManager();
         //$blogs = $em->createQueryBuilder()->select('b')->from('BloggerBlogBundle:Blog', 'b')

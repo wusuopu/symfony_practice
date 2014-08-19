@@ -23,6 +23,10 @@ class TimeAuthenticator implements SimpleFormAuthenticatorInterface
      */
     protected $kernel;
 
+    /**
+     * @param EncoderFactoryInterface $encoderFactory
+     * @param KernelInterface         $kernel
+     */
     public function __construct(EncoderFactoryInterface $encoderFactory, KernelInterface $kernel)
     {
         $this->encoderFactory = $encoderFactory;

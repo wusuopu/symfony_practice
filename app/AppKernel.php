@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Blogger\TestBundle\BloggerTestBundle(),
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -29,6 +30,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
+            $bundles[] = new Wusuopu\RemoteDumpBundle\RemoteDumpBundle();
         }
 
         return $bundles;

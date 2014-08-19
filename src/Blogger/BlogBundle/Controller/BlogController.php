@@ -46,6 +46,15 @@ class BlogController extends Controller
         if (!$blog) {
             throw $this->createNotFoundException('Unable to findBlog post.');
         }
+
+        // get entity metadata.
+        //$meta = $this->getDoctrine()->getEntityManager()->getClassMetadata('BloggerBlogBundle:Blog');
+        //var_dump("getSingleIdentifierFieldName: ", $meta->getSingleIdentifierFieldName());
+        //var_dump("getIdentifierFieldNames: ", $meta->getIdentifierFieldNames());
+        //var_dump("getIdentifierColumnNames: ", $meta->getIdentifierColumnNames());
+        //var_dump("getIdentifierValues: ", $meta->getIdentifierValues($blog));
+        //var_dump($meta->getFieldValue($blog, $meta->getSingleIdentifierFieldName()));
+
         //if (false === $this->get('security.context')->isGranted('view', $blog)) {
             //$this->PutAppLog("Unauthorised access!");
             //throw new AccessDeniedException('Unauthorised access this blog!');

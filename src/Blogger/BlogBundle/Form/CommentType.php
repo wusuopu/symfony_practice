@@ -22,6 +22,7 @@ class CommentType extends AbstractType
             //->add('created')
             //->add('updated')
             //->add('blog')
+            ->add('captcha', 'captcha')
         ;
     }
     
