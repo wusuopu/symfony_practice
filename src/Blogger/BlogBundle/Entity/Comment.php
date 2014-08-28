@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping\EntityListeners;
  *
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\CommentRepository")
- * @ORM\EntityListeners({"Blogger\BlogBundle\Entity\CommentListener"})
  */
 class Comment
 {
