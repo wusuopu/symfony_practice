@@ -5,6 +5,7 @@ namespace Blogger\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\EntityListeners;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -25,6 +26,12 @@ class Comment
 
     /**
      * @var string
+     * @Assert\Length(
+     *    min = "2",
+     *    max = "20",
+     *    minMessage = "user must be at least {{ limit }} characters length",
+     *    maxMessage = "user cannot be longer than {{ limit }} characters length"
+     * )
      *
      * @ORM\Column(name="user", type="string", length=255)
      */
@@ -32,6 +39,13 @@ class Comment
 
     /**
      * @var string
+     *
+     * @Assert\Length(
+     *    min = "2",
+     *    max = "20",
+     *    minMessage = "comment must be at least {{ limit }} characters length",
+     *    maxMessage = "comment cannot be longer than {{ limit }} characters length"
+     * )
      *
      * @ORM\Column(name="comment", type="text")
      */

@@ -14,5 +14,12 @@ trait LoggerUtil
             $this->get('monolog.logger.applog')->$level($outStr, $ctx);
         }
     }
+
+    public function remoteDump($data)
+    {
+        if ($this->container->has('wusuopu.remote_dump')) {
+            $this->container->get('wusuopu.remote_dump')->dump($data);
+        }
+    }
 }
 ?>
