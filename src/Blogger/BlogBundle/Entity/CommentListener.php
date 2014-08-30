@@ -13,12 +13,14 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Blogger\BlogBundle\Entity\Comment;
+use Blogger\BlogBundle\Common\ContainerBase;
+use Blogger\BlogBundle\Entity\CommentListener;
 
 
 /**
  * 
  */
-class CommentListener
+class CommentListener extends ContainerBase
 {
     //private $kernel;
     private $fields = array();
@@ -50,7 +52,7 @@ class CommentListener
         foreach ($event->getEntityChangeSet() as $field => $value) {
             array_push($this->fields, $field);
         }
-        var_dump($this->fields, $comment->getComment());
+        var_dump("preupdate", $this->fields, $comment->getComment());
     }
 
     /**
@@ -59,8 +61,7 @@ class CommentListener
     public function PostUpdateHandler(Comment $comment, LifecycleEventArgs $event)
     {
         var_dump("Post Update", $this->fields, $comment->getComment());
-        global $kernel;
-        var_dump($kernel->getContainer()->get('sso_response_listener'));
+        var_dump($this->getContainer()->get('sso_response_listener'));
     }
 
     /**
