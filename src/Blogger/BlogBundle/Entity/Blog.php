@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use DateTime;
 use Blogger\BlogBundle\Annotation\StandardObject;
+use Blogger\BlogBundle\Validator\Constraints as BloggerAssert;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\BlogRepository")
@@ -22,6 +23,7 @@ class Blog
   protected $id;
 
   /**
+   * @BloggerAssert\ContainsWord
    * @ORM\Column(type="string")
    **/
   protected $title;
