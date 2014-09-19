@@ -24,27 +24,35 @@ class BlogTest extends WebTestCase
     public function testInsert()
     {
         $blog = new Blog();
-        $blog->setTitle("abcd");
+        $blog->setTitle("abcd123<br><b>a</b>\n\r4\n\r56");
         $blog->setAuthor("lcj");
         $blog->setBlog("content");
         $blog->setImage('beach.jpg');
         $blog->setTags('symfony2, php, paradise, symblog');
 
         $validator = $this->client->getContainer()->get('validator');
-
         $error = $validator->validate($blog);
 
-        var_dump($error);
-
-        $this->assertEquals(count($error), 0);
+        var_dump('getTitle1:', $blog->getTitle());
 
 
-        if (count($error)) {
-            return;
-        }
+        $filterService = $this->client->getContainer()->get('dms.filter');
+        $filterService->filterEntity($blog);
+
+        var_dump('getTitle2:', $blog->getTitle());
+
+        //var_dump($error);
+        //$this->assertEquals(count($error), 0);
+
+
+        //if (count($error)) {
+            //return;
+        //}
 
         $this->em->persist($blog);
         $this->em->flush();
+
+        //var_dump($blog->getTitle());
     }
 
     /**

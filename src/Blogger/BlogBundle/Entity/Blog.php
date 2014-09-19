@@ -5,9 +5,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use DMS\Filter\Rules as Filter;
+use DMS\Bundle\FilterBundle\Rule as SfFilter;
 use DateTime;
 use Blogger\BlogBundle\Annotation\StandardObject;
 use Blogger\BlogBundle\Validator\Constraints as BloggerAssert;
+use Blogger\BlogBundle\DMSFilter\Rules as BloggerFilter;
 
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\BlogRepository")
@@ -24,12 +27,14 @@ class Blog
 
   /**
    * @BloggerAssert\ContainsWord
+   * @BloggerFilter\StripWords()
    * @ORM\Column(type="string")
    **/
   protected $title;
 
   /**
    * @ORM\Column(type="string", length=100)
+   * SfFilter\Service(service="mycustomedms.strip_sensitive_word", method="filter")
    **/
   protected $author;
 

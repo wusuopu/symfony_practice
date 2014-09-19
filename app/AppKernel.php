@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new DMS\Bundle\FilterBundle\DMSFilterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
