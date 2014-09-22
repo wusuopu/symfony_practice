@@ -68,6 +68,10 @@ services:
     upload_picture_service:
         class: Blogger\BlogBundle\Consumer\UploadPictureConsumer
 
+    my_oauth.user.provider.entity:
+        class: Blogger\BlogBundle\Security\User\OAuthUserProvider
+        arguments: [@doctrine.orm.entity_manager]
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -147,3 +151,15 @@ snc_redis:
             type: predis
             alias: login
             dsn: redis://localhost:6379/1
+
+hwi_oauth:
+    firewall_name: secured_area
+    resource_owners:
+        qq:
+            type:                qq
+            client_id:           ""
+            client_secret:       ""
+        weibo:
+            type:                sina_weibo
+            client_id:           ""
+            client_secret:       ""

@@ -30,7 +30,8 @@
         "predis/predis": "0.8.x-dev",
         "gregwar/captcha-bundle": "dev-master",
         "wusuopu/remote-dump-bundle": "dev-master",
-        "dms/dms-filter-bundle": "~2.0"
+        "dms/dms-filter-bundle": "~2.0",
+        "hwi/oauth-bundle": "0.4.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
