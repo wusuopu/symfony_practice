@@ -1,0 +1,3 @@
+{% for client in clients %}
+  <a target="_blank" href="{{ path('fos_oauth_server_authorize', {'client_id': client.publicId, 'redirect_uri': client.redirectUris[0], 'response_type': 'code'}) }}">{{ client.randomId }}</a> <br />
+{% endfor %}

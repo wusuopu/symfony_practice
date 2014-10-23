@@ -48,6 +48,26 @@ security:
             #pattern:  ^/test2$
             #security: false
 
+        #oauth_token:
+            #pattern:  ^/oauth/v2/token
+            #security: false
+            #anonymous: ~
+
+        #oauth_authorize:
+            #pattern:  ^/oauth/v2/auth
+            #security: false
+            #anonymous: ~
+
+        oauth_api:
+            pattern:   ^/api/oauth/v2
+            fos_oauth: true
+            stateless: true
+            #security:  true
+            #anonymous: true
+
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
         secured_area:
             pattern:    ^/
             #form_login:
@@ -78,12 +98,12 @@ security:
                 oauth_user_provider:
                     service: my_oauth.user.provider.entity
 
-            #http_basic:
-            #    realm: "Secured Demo Area"
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/secure_area, roles: ROLE_ADMIN }
+        #- { path: ^/api/oauth/v2, roles: [IS_AUTHENTICATED_FULLY] }
+        #- { path: ^/api/oauth/v2, requires_channel: https }
 
     acl:
         connection: default

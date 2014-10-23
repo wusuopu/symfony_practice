@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new DMS\Bundle\FilterBundle\DMSFilterBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new Blogger\OAuthServerBundle\BloggerOAuthServerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -66,6 +66,10 @@ blogger_blog_test2:
     requirements:
       _method: GET|POST
 
+blogger_blog_test3:
+    pattern:  /test3
+    defaults: { _controller: BloggerBlogBundle:Security:test3 }
+
 blogger_blog_mq_test:
     pattern:  /mq_test
     defaults: { _controller: BloggerBlogBundle:Page:mqTest }

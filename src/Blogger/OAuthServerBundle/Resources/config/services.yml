@@ -1,0 +1,11 @@
+parameters:
+#    blogger_o_auth_server.example.class: Blogger\OAuthServerBundle\Example
+
+services:
+#    blogger_o_auth_server.example:
+#        class: %blogger_o_auth_server.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    blogger_oauth_server.login.form.handler.default:
+        class: Blogger\OAuthServerBundle\Form\Handler\LoginFormHandler
+        arguments: [ @service_container ]

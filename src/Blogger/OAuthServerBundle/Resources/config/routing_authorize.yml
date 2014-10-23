@@ -1,0 +1,3 @@
+blogger_oauth_server_auth:
+    path:     /auth
+    defaults: { _controller: BloggerOAuthServerBundle:Authorize:authorize }

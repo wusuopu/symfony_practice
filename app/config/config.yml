@@ -154,6 +154,8 @@ snc_redis:
 
 hwi_oauth:
     firewall_name: secured_area
+    http_client:
+        timeout: 10
     resource_owners:
         qq:
             type:                qq
@@ -163,3 +165,18 @@ hwi_oauth:
             type:                sina_weibo
             client_id:           ""
             client_secret:       ""
+
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Blogger\OAuthServerBundle\Entity\Client
+    access_token_class:  Blogger\OAuthServerBundle\Entity\AccessToken
+    refresh_token_class: Blogger\OAuthServerBundle\Entity\RefreshToken
+    auth_code_class:     Blogger\OAuthServerBundle\Entity\AuthCode
+    service:
+        user_provider: webservice_user_provider
+        options:
+            access_token_lifetime: 432000
+
+blogger_oauth_server:
+    authenticator: time_authenticator
+    user_provider: webservice_user_provider

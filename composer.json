@@ -31,7 +31,10 @@
         "gregwar/captcha-bundle": "dev-master",
         "wusuopu/remote-dump-bundle": "dev-master",
         "dms/dms-filter-bundle": "~2.0",
-        "hwi/oauth-bundle": "0.4.*@dev"
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "kriswallsmith/buzz": "~0.7",
+        "bshaffer/oauth2-server-bundle": "~0.3",
+        "friendsofsymfony/oauth-server-bundle": "~1.4"
     },
     "scripts": {
         "post-install-cmd": [

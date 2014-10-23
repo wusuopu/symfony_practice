@@ -1,3 +1,11 @@
+blogger_oauth_server_api:
+    resource: "@BloggerOAuthServerBundle/Resources/config/routing_api.yml"
+    prefix:   /api/oauth/v2
+
+blogger_oauth_server_auth:
+    resource: "@BloggerOAuthServerBundle/Resources/config/routing_authorize.yml"
+    prefix:   /
+
 blogger_test:
     resource: "@BloggerTestBundle/Resources/config/routing.yml"
     prefix:   /
@@ -14,6 +22,12 @@ hwi_oauth_redirect:
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
     prefix:   /oauth_login
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
 login:
     path:  /login

@@ -176,6 +176,20 @@ class SecurityController extends Controller
             'token' => $token,
         );
     }
+
+    /**
+     * @Template()
+     **/
+    public function test3Action()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $clients = $em->getRepository('BloggerOAuthServerBundle:Client')
+                      ->createQueryBuilder('c')->getQuery()->getResult();
+
+        return array(
+            'clients' => $clients,
+        );
+    }
 }
 
 ?>
